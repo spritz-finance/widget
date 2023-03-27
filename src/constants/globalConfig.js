@@ -4,9 +4,9 @@ export default {
       FRONTEND: "https://app-staging.spritz.finance",
       NAME: "STAGING",
     },
-    LOCAL_DEVELOPMENT: {
+    LOCAL: {
       FRONTEND: "https://localdev.spritz.finance:3000",
-      NAME: "LOCAL_DEVELOPMENT",
+      NAME: "LOCAL",
     },
     PRODUCTION: {
       FRONTEND: "https://app.spritz.finance",

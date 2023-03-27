@@ -1075,7 +1075,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 },{}],7:[function(require,module,exports){
 module.exports={
   "name": "@spritz-finance/widget",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Spritz Finance Widget to integrate fiat offramp",
   "main": "dist/sdk.js",
   "scripts": {
@@ -1115,6 +1115,9 @@ module.exports={
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
 
@@ -1231,7 +1234,7 @@ function getCSS(themeColor, height, width) {
     width:100%;
 }
 
-#spritzFiatOnOffRamp{
+#spritzWidget{
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -1301,11 +1304,7 @@ var _default = {
   SPRITZ_WIDGET_INITIALISED: "SPRITZ_WIDGET_INITIALISED",
   SPRITZ_WIDGET_OPEN: "SPRITZ_WIDGET_OPEN",
   SPRITZ_WIDGET_CLOSE_REQUEST: "SPRITZ_WIDGET_CLOSE_REQUEST",
-  SPRITZ_WIDGET_CLOSE: "SPRITZ_WIDGET_CLOSE",
-  SPRITZ_ORDER_CREATED: "SPRITZ_ORDER_CREATED",
-  SPRITZ_ORDER_CANCELLED: "SPRITZ_ORDER_CANCELLED",
-  SPRITZ_ORDER_FAILED: "SPRITZ_ORDER_FAILED",
-  SPRITZ_ORDER_SUCCESSFUL: "SPRITZ_ORDER_SUCCESSFUL"
+  SPRITZ_WIDGET_CLOSE: "SPRITZ_WIDGET_CLOSE"
 };
 exports.default = _default;
 
@@ -1322,9 +1321,9 @@ var _default = {
       FRONTEND: "https://app-staging.spritz.finance",
       NAME: "STAGING"
     },
-    LOCAL_DEVELOPMENT: {
+    LOCAL: {
       FRONTEND: "https://localdev.spritz.finance:3000",
-      NAME: "LOCAL_DEVELOPMENT"
+      NAME: "LOCAL"
     },
     PRODUCTION: {
       FRONTEND: "https://app.spritz.finance",
@@ -1381,13 +1380,13 @@ var _css = require("./assets/css");
 var _package = require("../package.json");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const eventEmitter = new _events.default.EventEmitter();
-function spritzSDK(partnerData) {
+function spritzSDK(partnerData, provider) {
   this.sdkVersion = _package.version;
   this.partnerData = partnerData;
-  this.isInitialised = false;
   this.EVENTS = _constants.EVENTS;
   this.ALL_EVENTS = "*";
   this.ERROR = "spritz_ERROR";
+  this.provider = provider;
 }
 spritzSDK.prototype.on = function (type, cb) {
   if (type === this.ALL_EVENTS) {
@@ -1402,19 +1401,12 @@ spritzSDK.prototype.init = function () {
   this.modal(this);
 };
 spritzSDK.prototype.close = async function () {
-  let modal = document.getElementById("spritzFiatOnOffRamp");
+  let modal = document.getElementById("spritzWidget");
   if (modal && modal.style) {
     modal.style.display = "none";
     modal.innerHTML = "";
     await modal.remove();
   }
-};
-spritzSDK.prototype.closeRequest = function () {
-  let iframeEl = document.getElementById("spritzOnOffRampWidget");
-  if (iframeEl) iframeEl.contentWindow.postMessage({
-    event_id: _constants.EVENTS.spritz_WIDGET_CLOSE_REQUEST,
-    data: true
-  }, "*");
 };
 spritzSDK.prototype.modal = async function () {
   try {
@@ -1429,14 +1421,14 @@ spritzSDK.prototype.modal = async function () {
         sdkVersion: this.sdkVersion
       });
       let wrapper = document.createElement("div");
-      wrapper.id = "spritzFiatOnOffRamp";
-      wrapper.innerHTML = `<div class="spritz_modal-overlay" id="spritz_modal-overlay"></div><div class="spritz_modal" id="spritz_modal"><div class="spritz_modal-content"><span class="spritz_close">${_svg.closeSVGIcon}</span><div class="spritzContainer"><iframe id="spritzOnOffRampWidget" allow="camera;microphone;fullscreen;payment" allowFullScreen src="${url}" style="width: ${width}; height: ${height}"></iframe></div></div></div>`;
+      wrapper.id = "spritzWidget";
+      wrapper.innerHTML = `<div class="spritz_modal-overlay" id="spritz_modal-overlay"></div><div class="spritz_modal" id="spritz_modal"><div class="spritz_modal-content"><span class="spritz_close">${_svg.closeSVGIcon}</span><div class="spritzContainer"><iframe id="spritzWidgetFrame" allow="camera;microphone;fullscreen;payment" allowFullScreen src="${url}" style="width: ${width}; height: ${height}"></iframe></div></div></div>`;
       let container = document.getElementsByTagName("body");
       if (!container) container = document.getElementsByTagName("html");
       if (!container) container = document.getElementsByTagName("div");
       await container[0].appendChild(wrapper);
       await setStyle(this.partnerData.themeColor, width, height);
-      let modal = document.getElementById("spritzFiatOnOffRamp");
+      let modal = document.getElementById("spritzWidget");
       let span = document.getElementsByClassName("spritz_close")[0];
 
       //Prevent background scrolling when overlay appears
@@ -1444,19 +1436,19 @@ spritzSDK.prototype.modal = async function () {
       document.body.scroll = "no";
       if (modal && modal.style) modal.style.display = "block";
       this.isInitialised = true;
-      eventEmitter.emit(_constants.EVENTS.spritz_WIDGET_INITIALISED, {
+      eventEmitter.emit(_constants.EVENTS.SPRITZ_WIDGET_INITIALISED, {
         status: true,
-        eventName: _constants.EVENTS.spritz_WIDGET_INITIALISED
+        eventName: _constants.EVENTS.SPRITZ_WIDGET_INITIALISED
       });
       // When the user clicks on <span> (x), close the modal
       span.onclick = () => {
-        return this.closeRequest();
+        return this.close();
       };
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = event => {
-        if (event.target === document.getElementById("spritz_modal-overlay")) this.closeRequest();
+        if (event.target === document.getElementById("spritz_modal-overlay")) this.close();
       };
-      if (window.addEventListener) window.addEventListener("message", handleMessage);else window.attachEvent("onmessage", handleMessage);
+      if (window.addEventListener) window.addEventListener("message", e => handleMessage(e, this));else window.attachEvent("onmessage", e => handleMessage(e, this));
     }
   } catch (e) {
     throw e;
@@ -1469,7 +1461,6 @@ async function generateURL(configData) {
     width = "100%",
     height = "100%";
   if (configData) {
-    configData.hostURL = window.location.origin;
     if (configData.apiKey) {
       if (configData.environment) {
         if (_constants.config.ENVIRONMENT[configData.environment]) environment = _constants.config.ENVIRONMENT[configData.environment].NAME;
@@ -1501,77 +1492,58 @@ async function generateURL(configData) {
 async function setStyle(themeColor, width, height) {
   let style = await document.createElement("style");
   style.innerHTML = (0, _css.getCSS)(themeColor, height, width);
-  let modal = document.getElementById("spritzFiatOnOffRamp");
+  let modal = document.getElementById("spritzWidget");
   if (modal) await modal.appendChild(style);
 }
-function handleMessage(event) {
-  let environment;
-  if (event.origin === _constants.config.ENVIRONMENT.LOCAL_DEVELOPMENT.FRONTEND) environment = _constants.config.ENVIRONMENT.LOCAL_DEVELOPMENT.NAME;else if (event.origin === _constants.config.ENVIRONMENT.PRODUCTION.FRONTEND) environment = _constants.config.ENVIRONMENT.PRODUCTION.NAME;else if (event.origin === _constants.config.ENVIRONMENT.STAGING.FRONTEND) environment = _constants.config.ENVIRONMENT.STAGING.NAME;
-  if (environment) {
-    if (event && event.data && event.data.event_id) {
-      switch (event.data.event_id) {
-        case _constants.EVENTS.spritz_WIDGET_CLOSE:
-          {
-            eventEmitter.emit(_constants.EVENTS.spritz_WIDGET_CLOSE, {
-              status: true,
-              eventName: _constants.EVENTS.spritz_WIDGET_CLOSE
-            });
-
-            //enable background scrolling when overlay appears
-            document.documentElement.style.overflow = "scroll";
-            document.body.scroll = "yes";
-            let modal = document.getElementById("spritzFiatOnOffRamp");
-            if (modal && modal.style) {
-              modal.style.display = "none";
-              modal.innerHTML = "";
-              modal.remove();
-            }
-            break;
-          }
-        case _constants.EVENTS.spritz_ORDER_CREATED:
-          {
-            eventEmitter.emit(_constants.EVENTS.spritz_ORDER_CREATED, {
-              status: event.data.data,
-              eventName: _constants.EVENTS.spritz_ORDER_CREATED
-            });
-            break;
-          }
-        case _constants.EVENTS.spritz_ORDER_CANCELLED:
-          {
-            eventEmitter.emit(_constants.EVENTS.spritz_ORDER_CANCELLED, {
-              status: event.data.data,
-              eventName: _constants.EVENTS.spritz_ORDER_CANCELLED
-            });
-            break;
-          }
-        case _constants.EVENTS.spritz_ORDER_FAILED:
-          {
-            eventEmitter.emit(_constants.EVENTS.spritz_ORDER_FAILED, {
-              status: event.data.data,
-              eventName: _constants.EVENTS.spritz_ORDER_FAILED
-            });
-            break;
-          }
-        case _constants.EVENTS.spritz_ORDER_SUCCESSFUL:
-          {
-            eventEmitter.emit(_constants.EVENTS.spritz_ORDER_SUCCESSFUL, {
-              status: event.data.data,
-              eventName: _constants.EVENTS.spritz_ORDER_SUCCESSFUL
-            });
-            break;
-          }
-        case _constants.EVENTS.spritz_WIDGET_OPEN:
-          {
-            eventEmitter.emit(_constants.EVENTS.spritz_WIDGET_OPEN, {
-              status: true,
-              eventName: _constants.EVENTS.spritz_WIDGET_OPEN
-            });
-            break;
-          }
-        default:
-          {}
+function handleClose() {
+  //enable background scrolling when overlay appears
+  document.documentElement.style.overflow = "scroll";
+  document.body.scroll = "yes";
+  let modal = document.getElementById("spritzWidget");
+  if (modal && modal.style) {
+    modal.style.display = "none";
+    modal.innerHTML = "";
+    modal.remove();
+  }
+}
+function handleMessage(event, spritz) {
+  const environment = Object.values(_constants.config.ENVIRONMENT).find(env => env.FRONTEND === event.origin);
+  if (!environment) return;
+  if (!event.data) return;
+  if (event.data && event.data.jsonrpc === "2.0") {
+    const iframeElement = document.getElementById("spritzWidgetFrame");
+    if (!iframeElement.contentWindow) return;
+    spritz.provider.sendAsync(event.data, (error, result) => {
+      if (error) {
+        iframeElement.contentWindow.postMessage({
+          ...result,
+          error
+        }, event.origin);
+      } else {
+        iframeElement.contentWindow.postMessage(result, event.origin);
       }
-    }
+    });
+  }
+  switch (event.data.event_id) {
+    case _constants.EVENTS.SPRITZ_WIDGET_CLOSE:
+      {
+        eventEmitter.emit(_constants.EVENTS.SPRITZ_WIDGET_CLOSE, {
+          status: true,
+          eventName: _constants.EVENTS.SPRITZ_WIDGET_CLOSE
+        });
+        handleClose();
+        break;
+      }
+    case _constants.EVENTS.SPRITZ_WIDGET_OPEN:
+      {
+        eventEmitter.emit(_constants.EVENTS.SPRITZ_WIDGET_OPEN, {
+          status: true,
+          eventName: _constants.EVENTS.SPRITZ_WIDGET_OPEN
+        });
+        break;
+      }
+    default:
+      {}
   }
 }
 var _default = spritzSDK;

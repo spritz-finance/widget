@@ -104,7 +104,7 @@ export function getCSS(themeColor, height, width) {
     width:100%;
 }
 
-#spritzFiatOnOffRamp{
+#spritzWidget{
     margin-left: 10px;
     margin-right: 10px;
 }

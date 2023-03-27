@@ -1,7 +1,12 @@
-import './index.css'
+import "./index.css";
 
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import ProviderExample from "../components/ProviderExample";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ProviderExample>
+      <Component {...pageProps} />
+    </ProviderExample>
+  );
 }

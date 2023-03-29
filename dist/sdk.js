@@ -1075,7 +1075,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 },{}],7:[function(require,module,exports){
 module.exports={
   "name": "@spritz-finance/widget",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Spritz Finance Widget to integrate fiat offramp",
   "main": "dist/sdk.js",
   "scripts": {
@@ -1133,9 +1133,9 @@ function getCSS(themeColor, height, width) {
 /* Modal Content/Box */
 .spritz_close {
     float: right;
-      animation: 5s spritz_fadeIn;
-      animation-fill-mode: forwards;
-      visibility: hidden;
+    animation: 1s spritz_fadeIn;
+    animation-fill-mode: forwards;
+    visibility: hidden;
     transition: 0.5s;
     position: absolute;
     right: -5px;
@@ -1183,17 +1183,18 @@ function getCSS(themeColor, height, width) {
   top: 50%;
   transform: translate(-50%, -50%);
   background: white;
-      border: none;
-    border-radius: 2%;
-    margin: 0px auto;
-    display: block;
+  border: none;
+  border-radius: 2%;
+  margin: 0px auto;
+  display: block;
 }
+
 .spritz_closed {
   display: none;
 }
 
-#spritzOnOffRampWidget{
- min-height: ${height}; 
+#spritzWidgetFrame {
+    min-height: ${height}; 
     position: absolute; 
     border: none; 
     border-radius: 2%; 
@@ -1207,15 +1208,15 @@ function getCSS(themeColor, height, width) {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 50;
-  
+  z-index: 50;  
   background: rgba(0, 0, 0, 0.6);
 }
 
-.spritz_modal-content{
+.spritz_modal-content {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .spritz_modal .close-button {
@@ -1229,7 +1230,7 @@ function getCSS(themeColor, height, width) {
   font-size: 1.3rem;
 }
 
-.spritz_spritzContainer{
+.spritz_spritzContainer {
     height: 100%;
     width:100%;
 }
@@ -1249,8 +1250,8 @@ function getCSS(themeColor, height, width) {
 }
 
 @media all and (max-height: ${height}) and (max-width: ${width}) {
-    #spritzOnOffRampWidget{
-    padding-bottom: 15px;
+    #spritzOnOffRampWidget {
+      padding-bottom: 15px;
     }
 }
 `;
@@ -1422,7 +1423,16 @@ spritzSDK.prototype.modal = async function () {
       });
       let wrapper = document.createElement("div");
       wrapper.id = "spritzWidget";
-      wrapper.innerHTML = `<div class="spritz_modal-overlay" id="spritz_modal-overlay"></div><div class="spritz_modal" id="spritz_modal"><div class="spritz_modal-content"><span class="spritz_close">${_svg.closeSVGIcon}</span><div class="spritzContainer"><iframe id="spritzWidgetFrame" allow="camera;microphone;fullscreen;payment" allowFullScreen src="${url}" style="width: ${width}; height: ${height}"></iframe></div></div></div>`;
+      wrapper.innerHTML = `
+            <div class="spritz_modal-overlay" id="spritz_modal-overlay"></div>
+            <div class="spritz_modal" id="spritz_modal">
+                <div class="spritz_modal-content">
+                  <span class="spritz_close">${_svg.closeSVGIcon}</span>
+                  <div class="spritzContainer">
+                      <iframe id="spritzWidgetFrame" allow="camera;microphone;fullscreen;payment" scrolling="no" allowFullScreen src="${url}" style="width: ${width}; height: ${height}"></iframe>
+                  </div>
+                </div>
+              </div>`;
       let container = document.getElementsByTagName("body");
       if (!container) container = document.getElementsByTagName("html");
       if (!container) container = document.getElementsByTagName("div");

@@ -46,7 +46,16 @@ spritzSDK.prototype.modal = async function () {
       });
       let wrapper = document.createElement("div");
       wrapper.id = "spritzWidget";
-      wrapper.innerHTML = `<div class="spritz_modal-overlay" id="spritz_modal-overlay"></div><div class="spritz_modal" id="spritz_modal"><div class="spritz_modal-content"><span class="spritz_close">${closeSVGIcon}</span><div class="spritzContainer"><iframe id="spritzWidgetFrame" allow="camera;microphone;fullscreen;payment" allowFullScreen src="${url}" style="width: ${width}; height: ${height}"></iframe></div></div></div>`;
+      wrapper.innerHTML = `
+            <div class="spritz_modal-overlay" id="spritz_modal-overlay"></div>
+            <div class="spritz_modal" id="spritz_modal">
+                <div class="spritz_modal-content">
+                  <span class="spritz_close">${closeSVGIcon}</span>
+                  <div class="spritzContainer">
+                      <iframe id="spritzWidgetFrame" allow="camera;microphone;fullscreen;payment" scrolling="no" allowFullScreen src="${url}" style="width: ${width}; height: ${height}"></iframe>
+                  </div>
+                </div>
+              </div>`;
       let container = document.getElementsByTagName("body");
       if (!container) container = document.getElementsByTagName("html");
       if (!container) container = document.getElementsByTagName("div");

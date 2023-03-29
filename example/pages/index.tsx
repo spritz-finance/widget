@@ -10,7 +10,7 @@ export default function Home() {
     let spritzWidget = new SpritzSDK(
       {
         apiKey: "1dfeff2e-7de7-4ab3-8256-efbea11f24f2", // Your API Key
-        environment: "LOCAL", // STAGING/PRODUCTION
+        environment: "STAGING", // STAGING/PRODUCTION
         widgetHeight: "800px",
         widgetWidth: "100%",
       },

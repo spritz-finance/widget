@@ -3,9 +3,9 @@ export function getCSS(themeColor, height, width) {
 /* Modal Content/Box */
 .spritz_close {
     float: right;
-      animation: 5s spritz_fadeIn;
-      animation-fill-mode: forwards;
-      visibility: hidden;
+    animation: 1s spritz_fadeIn;
+    animation-fill-mode: forwards;
+    visibility: hidden;
     transition: 0.5s;
     position: absolute;
     right: -5px;
@@ -53,17 +53,18 @@ export function getCSS(themeColor, height, width) {
   top: 50%;
   transform: translate(-50%, -50%);
   background: white;
-      border: none;
-    border-radius: 2%;
-    margin: 0px auto;
-    display: block;
+  border: none;
+  border-radius: 2%;
+  margin: 0px auto;
+  display: block;
 }
+
 .spritz_closed {
   display: none;
 }
 
-#spritzOnOffRampWidget{
- min-height: ${height}; 
+#spritzWidgetFrame {
+    min-height: ${height}; 
     position: absolute; 
     border: none; 
     border-radius: 2%; 
@@ -77,15 +78,15 @@ export function getCSS(themeColor, height, width) {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 50;
-  
+  z-index: 50;  
   background: rgba(0, 0, 0, 0.6);
 }
 
-.spritz_modal-content{
+.spritz_modal-content {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .spritz_modal .close-button {
@@ -99,7 +100,7 @@ export function getCSS(themeColor, height, width) {
   font-size: 1.3rem;
 }
 
-.spritz_spritzContainer{
+.spritz_spritzContainer {
     height: 100%;
     width:100%;
 }
@@ -119,8 +120,8 @@ export function getCSS(themeColor, height, width) {
 }
 
 @media all and (max-height: ${height}) and (max-width: ${width}) {
-    #spritzOnOffRampWidget{
-    padding-bottom: 15px;
+    #spritzOnOffRampWidget {
+      padding-bottom: 15px;
     }
 }
 `;

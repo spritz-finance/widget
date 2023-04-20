@@ -353,37 +353,6 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@gnosis.pm/safe-apps-provider@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-provider/-/safe-apps-provider-0.12.0.tgz#bf0b7de614627bd07d4023a3d0e3ee94d109ca34"
-  integrity sha512-HfBpbp4KC1cY10EgTgra2XGtPC9t7PES1OrUQvZHZdbp/2CdmlwrrmXCBfhpxmEr4C2DmGqoGBBZWPeli6rctA==
-  dependencies:
-    "@gnosis.pm/safe-apps-sdk" "7.6.0"
-    events "^3.3.0"
-
-"@gnosis.pm/safe-apps-sdk@7.6.0":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-sdk/-/safe-apps-sdk-7.6.0.tgz#fdd8fa57eb3d6be3ba384ee51cb5b2f5f6416fbc"
-  integrity sha512-2MFdcNu/n2pioeX2TiXMmwtxvhl5SM8Y2RapDF8YxF11naubKvVXIg5KDJfmvGfXCn7wyqjLxkBcUkMPFbcS8w==
-  dependencies:
-    "@gnosis.pm/safe-react-gateway-sdk" "^3.1.3"
-    ethers "^5.6.8"
-
-"@gnosis.pm/safe-apps-sdk@^7.6.0":
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-sdk/-/safe-apps-sdk-7.8.0.tgz#295ab9d563b94208e3042495cdba787fa035c71e"
-  integrity sha512-kO8fJi1ebiKN9qH1NdDToVBuDQQ0U9NkL467U+84LtNTx5PzUJIu6O7tb4nZD24e/OItinf5W8GDWhhfZeiqOA==
-  dependencies:
-    "@gnosis.pm/safe-react-gateway-sdk" "^3.1.3"
-    ethers "^5.6.8"
-
-"@gnosis.pm/safe-react-gateway-sdk@^3.1.3":
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-react-gateway-sdk/-/safe-react-gateway-sdk-3.5.2.tgz#088b0d5db2eb7524ff4141795ecf948adc40c97c"
-  integrity sha512-6P2uJMnhHcJeErd/t13ChH6sda+vUIOqcrcUDKyWCNXpcmMniPcZzkQxZ8cYz186gQFbslsHSjQ6twnh4yhXUw==
-  dependencies:
-    cross-fetch "^3.1.5"
-
 "@json-rpc-tools/provider@^1.5.5":
   version "1.7.6"
   resolved "https://registry.yarnpkg.com/@json-rpc-tools/provider/-/provider-1.7.6.tgz#8a17c34c493fa892632e278fd9331104e8491ec6"
@@ -569,6 +538,37 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@pedrouid/environment/-/environment-1.0.1.tgz#858f0f8a057340e0b250398b75ead77d6f4342ec"
   integrity sha512-HaW78NszGzRZd9SeoI3JD11JqY+lubnaOx7Pewj5pfjqWXOEATpeKIFb9Z4t2WBUK2iryiXX3lzWwmYWgUL0Ug==
+
+"@safe-global/safe-apps-provider@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@safe-global/safe-apps-provider/-/safe-apps-provider-0.16.0.tgz#55cb8ef168900fa13d4f4508a99ef00b565bf55d"
+  integrity sha512-oeRlvU+2hjFx/7EbskGq30kkwL2hyfdseZZZYf6na/xD85mZ59zKO81lBxZcWnvofJFqjqtScz84PAKth9Sq2g==
+  dependencies:
+    "@safe-global/safe-apps-sdk" "7.10.0"
+    events "^3.3.0"
+
+"@safe-global/safe-apps-sdk@7.10.0":
+  version "7.10.0"
+  resolved "https://registry.yarnpkg.com/@safe-global/safe-apps-sdk/-/safe-apps-sdk-7.10.0.tgz#e75fc581126f27c52ec2601da51bca5eb99b61f4"
+  integrity sha512-is0QAHVoGkP06YfOPcp4X3/YUEA3wRdgFUyKZ4rT47uOEnzxA9Sm8BFJrIZqZOjjqC+aJXRMF0cE2qucS953rg==
+  dependencies:
+    "@safe-global/safe-gateway-typescript-sdk" "^3.5.3"
+    ethers "^5.7.2"
+
+"@safe-global/safe-apps-sdk@^7.10.0":
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/@safe-global/safe-apps-sdk/-/safe-apps-sdk-7.10.1.tgz#debb5d69634fe9d8ef8e03f6d1cc9384f92324ab"
+  integrity sha512-2imnqAbx9XrqT3psrhe/YVpj2yW840ngJIuqv0nTiWJLKcTCzM2LJ4MH7ir7H8Sp2wdG/BqNB3SvjUAks2qNjQ==
+  dependencies:
+    "@safe-global/safe-gateway-typescript-sdk" "^3.5.3"
+    ethers "^5.7.2"
+
+"@safe-global/safe-gateway-typescript-sdk@^3.5.3":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@safe-global/safe-gateway-typescript-sdk/-/safe-gateway-typescript-sdk-3.7.0.tgz#2af52f1bc73759b1b6a549fed598781c8c5fce72"
+  integrity sha512-3BvlUgp0oZ1Zkn7nG3wY1jvCEE4t530BjKcaa3r0qsf0whf/ez/0gmQwk7DTOGmVmvOfjj6HHikxnrUCCX+/3Q==
+  dependencies:
+    cross-fetch "^3.1.5"
 
 "@stablelib/aead@^1.0.1":
   version "1.0.1"
@@ -978,57 +978,58 @@
   dependencies:
     "@web3-react/types" "^8.0.21-beta.0"
 
-"@web3-react/core@8.0.36-beta.0":
-  version "8.0.36-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/core/-/core-8.0.36-beta.0.tgz#8364bee05d3ae713bd06fbe283fba214bac3f2af"
-  integrity sha512-ou6sugMV4aaMVFC3KUfEkhFdiNHEGhAjzbe1lnlLeh0PvzCNUuGgr13JyusrMxZ0i7YwnFVp7W8PP6L7UtshBw==
+"@web3-react/core@^8.0.36-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/core/-/core-8.2.0.tgz#95fb615bb283be520e6f61b5e48cfb0047943808"
+  integrity sha512-r7dmK2E8Jrpvm/DF93hGMB+8lECHSI3Oo0NrHbhxkisK6in6rdgAXeYFhZtM48LBAm9py6fQvLzjCM6Qx9q0oQ==
   dependencies:
-    "@web3-react/store" "^8.0.26-beta.0"
-    "@web3-react/types" "^8.0.21-beta.0"
-    zustand "^4.0.0"
+    "@web3-react/store" "^8.2.0"
+    "@web3-react/types" "^8.2.0"
+    zustand "^4.3.5"
   optionalDependencies:
     "@ethersproject/providers" "^5"
 
-"@web3-react/eip1193@8.0.36-beta.0":
-  version "8.0.28-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/eip1193/-/eip1193-8.0.28-beta.0.tgz#10d3119ddbde8303fb678f44162bfde189454252"
-  integrity sha512-ujJOTUZubTQKjkKn7cZ0RlBcoEDafAaqCeS///ITPvo3fWMU6oH+BmxN5vlSx+XxCC4lSujjKYazkrPKC1z6kA==
+"@web3-react/eip1193@^8.0.28-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/eip1193/-/eip1193-8.2.0.tgz#a7953769f9d0bec54472aceb01f72c889458378f"
+  integrity sha512-Ugbt+FisHO8aLD5o5B4AZdtgSVpjrbmtC5MgHrOEBw+IwFqr20EJreh052u8ExI2OrPjARIVOkNcp50Xxs7oUw==
   dependencies:
-    "@web3-react/types" "^8.0.21-beta.0"
+    "@web3-react/types" "^8.2.0"
+    eventemitter3 "^4.0.7"
 
-"@web3-react/empty@8.0.36-beta.0":
-  version "8.0.21-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/empty/-/empty-8.0.21-beta.0.tgz#11fbe0e81e45d28afe6f710f4436749daf637219"
-  integrity sha512-OCraMUQb1ldikiN/yvEvohhREUkKhzHrYcvsF8EzMuQZYSgjv75EFxt93qF92K64weI0Trrg3En1W+/tkIMR6Q==
+"@web3-react/empty@^8.0.21-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/empty/-/empty-8.2.0.tgz#dac248ab22867700b5be716cd5a3f8f95308e8c5"
+  integrity sha512-U8BIF56lW1GHXFz9cPAJnlmKM8VcsjpXr+LXNXGS+9mr5AEjNcjbn9T9EnQf4hY4YXUPHAnjsVcZoUfw3q6u7Q==
   dependencies:
-    "@web3-react/types" "^8.0.21-beta.0"
+    "@web3-react/types" "^8.2.0"
 
-"@web3-react/gnosis-safe@8.0.36-beta.0":
-  version "8.0.8-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/gnosis-safe/-/gnosis-safe-8.0.8-beta.0.tgz#1224ff8a085a1232b53f0ad59af1cc5e4b5ed99a"
-  integrity sha512-c130/rbLvVUOKb9CoB/1yvmHQGgHbMe7bPRGI980hlQTSG2LSHN8mjA17jilfMUhgZhze/EVv4orAC52mMFoFg==
+"@web3-react/gnosis-safe@^8.0.8-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/gnosis-safe/-/gnosis-safe-8.2.0.tgz#003e7f5b335751b6699152be301256c989631b51"
+  integrity sha512-52Z1uHcnIVsyfEPjj2C+cDF21wNCMrCT6kr1JTFXkvLMfZ3LvfWOX1j+C9lOBGUyZRBe5ZtkjiLiogGqRqZYmA==
   dependencies:
-    "@gnosis.pm/safe-apps-provider" "^0.12.0"
-    "@gnosis.pm/safe-apps-sdk" "^7.6.0"
-    "@web3-react/types" "^8.0.21-beta.0"
+    "@safe-global/safe-apps-provider" "^0.16.0"
+    "@safe-global/safe-apps-sdk" "^7.10.0"
+    "@web3-react/types" "^8.2.0"
 
-"@web3-react/metamask@8.0.36-beta.0":
-  version "8.0.31-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/metamask/-/metamask-8.0.31-beta.0.tgz#21c140f56dc7d617fd54fe1aeace1c643288ae5c"
-  integrity sha512-Z6FCNj5S3RxVHruMZ3uJUrkWpEZCcRkw1TAb9Iz4l+wF1GBSzt76M6LG82xay/X9yVaImHxDH2YOeAFTMvoihw==
+"@web3-react/metamask@^8.0.31-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/metamask/-/metamask-8.2.0.tgz#4f822e36bcbc37bbbce6f97f55c10537eeb5014d"
+  integrity sha512-nitDOHFZOUi9FWBmGAKlvExZDxZPWSJaXZn0lxl7LKaM6rPwBoEWKI2wJJvWCf+h5q9+p6ifiaFd7JKqucS6rQ==
   dependencies:
     "@metamask/detect-provider" "^1.2.0"
-    "@web3-react/types" "^8.0.21-beta.0"
+    "@web3-react/types" "^8.2.0"
 
-"@web3-react/network@8.0.36-beta.0":
-  version "8.0.28-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/network/-/network-8.0.28-beta.0.tgz#fe6f259c30283041a69a25a31b525c7af7ea1aa2"
-  integrity sha512-sPrqMBNM7dKGs29AqniJiJQ/xRMSdhGvKKqsNKgTxMAkLkK7zQCqllats6pwrKYVpjgQpEjStWeoh6oRJ3ct+A==
+"@web3-react/network@^8.0.28-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/network/-/network-8.2.0.tgz#225ae9e135711e8c64ab3123570abaa5b82b8145"
+  integrity sha512-3OcJwuaot8A+VTSoCe17MZv/K/TNVw7DjtYoS7lBRS/CmzYIwP53Tosea4MkliOuXiUUKj7Ge1D2FpWohq6pHw==
   dependencies:
     "@ethersproject/providers" "^5"
-    "@web3-react/types" "^8.0.21-beta.0"
+    "@web3-react/types" "^8.2.0"
 
-"@web3-react/store@^8.0.26-beta.0":
+"@web3-react/store@^8.2.0":
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/@web3-react/store/-/store-8.2.0.tgz#4260c7d1fca3c8e0358f32ed8909a5d8dba69a80"
   integrity sha512-cG8nb+tBeRUJu+98ko6YZuAWmoipGMEbR3bhineCNd4x2mXv3GbWSPtE17GeWVshZgDbZu2/Du0okTx+22VWCg==
@@ -1037,13 +1038,6 @@
     "@web3-react/types" "^8.2.0"
     zustand "^4.3.5"
 
-"@web3-react/types@8.0.36-beta.0":
-  version "8.0.21-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-8.0.21-beta.0.tgz#a8c1437f343a5d2955561f4b204190ad3cdf9244"
-  integrity sha512-eOkRtMhB1WDJZPQPDHKRydo5n+2ZEYbYPNm2jmgg2CcfNO2w1gav8OQISvABVW/ExQSaF9iKveGQd897xFLdcQ==
-  dependencies:
-    zustand "^4.0.0"
-
 "@web3-react/types@^8.0.20-beta.0", "@web3-react/types@^8.0.21-beta.0", "@web3-react/types@^8.2.0":
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/@web3-react/types/-/types-8.2.0.tgz#195464ebb94cb417e6dc3c16951573f9b6b3832a"
@@ -1051,13 +1045,13 @@
   dependencies:
     zustand "^4.3.5"
 
-"@web3-react/url@8.0.36-beta.0":
-  version "8.0.26-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/url/-/url-8.0.26-beta.0.tgz#e1817058809c7a2bfb3284deedc7e1c0348941bc"
-  integrity sha512-olMkPfOLxCZ2vZjnZNTi0Rf4vJJgYS8Xmc3dbuyNi7W7FyB2LRWYXmsCyLHzVtVDLTz3nD2wwqxeDFBkI/q52w==
+"@web3-react/url@^8.0.26-beta.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/url/-/url-8.2.0.tgz#5df80f213bf6b6f382aa842ae37ad0703d413a37"
+  integrity sha512-dt1i8AgZso6y0sX67JSZ1DzsU511iFu4Gcxksbw/yJPlFybsHco+Fcg94WLjWj4ec26kVRUBySUVCyXrYlg0kQ==
   dependencies:
     "@ethersproject/providers" "^5"
-    "@web3-react/types" "^8.0.21-beta.0"
+    "@web3-react/types" "^8.2.0"
 
 "@web3-react/walletconnect-v2@^8.1.3-beta.0":
   version "8.2.0"
@@ -1275,7 +1269,7 @@ end-of-stream@^1.4.1:
   dependencies:
     once "^1.4.0"
 
-ethers@^5.6.8, ethers@^5.7.0:
+ethers@^5.7.0, ethers@^5.7.2:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
   integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
@@ -1880,7 +1874,7 @@ yargs@^15.3.1:
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
 
-zustand@^4.0.0, zustand@^4.3.5:
+zustand@^4.3.5:
   version "4.3.7"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.3.7.tgz#501b1f0393a7f1d103332e45ab574be5747fedce"
   integrity sha512-dY8ERwB9Nd21ellgkBZFhudER8KVlelZm8388B5nDAXhO/+FZDhYMuRnqDgu5SYyRgz/iaf8RKnbUs/cHfOGlQ==

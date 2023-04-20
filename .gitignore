@@ -17,3 +17,5 @@ yarn-error.log*
 .history
 example/node_modules
 example/.next
+
+.vercel

@@ -8,6 +8,7 @@ import { version } from "../package.json";
 const eventEmitter = new events.EventEmitter();
 
 function spritzSDK(partnerData, provider) {
+  console.log("Initializing spritzSDK", { partnerData, provider });
   this.sdkVersion = version;
   this.partnerData = partnerData;
   this.EVENTS = EVENTS;

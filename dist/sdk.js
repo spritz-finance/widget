@@ -1075,7 +1075,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 },{}],7:[function(require,module,exports){
 module.exports={
   "name": "@spritz-finance/widget",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Spritz Finance Widget to integrate fiat offramp",
   "main": "dist/sdk.js",
   "scripts": {
@@ -1384,6 +1384,10 @@ var _package = require("../package.json");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const eventEmitter = new _events.default.EventEmitter();
 function spritzSDK(partnerData, provider) {
+  console.log("Initializing spritzSDK", {
+    partnerData,
+    provider
+  });
   this.sdkVersion = _package.version;
   this.partnerData = partnerData;
   this.EVENTS = _constants.EVENTS;

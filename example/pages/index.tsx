@@ -1,6 +1,6 @@
 import MetaMaskCard from "../components/connectorCards/MetaMaskCard";
-// import SpritzSDK from '../../dist/sdk'
-import SpritzSDK from "../../src/index";
+import SpritzSDK from "../../dist/sdk";
+// import SpritzSDK from "../../src/index";
 import { useWeb3React } from "@web3-react/core";
 
 export default function Home() {

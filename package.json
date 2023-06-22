@@ -1,6 +1,6 @@
 {
   "name": "@spritz-finance/widget",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Spritz Finance Widget to integrate fiat offramp",
   "main": "dist/sdk.js",
   "scripts": {

@@ -150,6 +150,8 @@ function handleClose() {
 }
 
 function handleMessage(event, spritz) {
+  console.log("[spritzWidget] handleMessage", event);
+
   const environment = Object.values(config.ENVIRONMENT).find(
     (env) => env.FRONTEND === event.origin
   );
@@ -161,6 +163,8 @@ function handleMessage(event, spritz) {
     const iframeElement = document.getElementById("spritzWidgetFrame");
     if (!iframeElement.contentWindow) return;
     spritz.provider.sendAsync(event.data, (error, result) => {
+      console.log("[spritzWidget] response", { error, result });
+
       if (error) {
         iframeElement.contentWindow.postMessage(
           {

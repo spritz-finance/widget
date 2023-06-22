@@ -1075,7 +1075,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 },{}],7:[function(require,module,exports){
 module.exports={
   "name": "@spritz-finance/widget",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Spritz Finance Widget to integrate fiat offramp",
   "main": "dist/sdk.js",
   "scripts": {
@@ -1100,9 +1100,11 @@ module.exports={
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@types/node": "^18.15.12",
     "browserify": "^16.5.0",
     "esmify": "^2.1.1",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "typescript": "^5.0.4"
   },
   "browserslist": {
     "production": [
@@ -1517,6 +1519,7 @@ function handleClose() {
   }
 }
 function handleMessage(event, spritz) {
+  console.log("[spritzWidget] handleMessage", event);
   const environment = Object.values(_constants.config.ENVIRONMENT).find(env => env.FRONTEND === event.origin);
   if (!environment) return;
   if (!event.data) return;
@@ -1524,6 +1527,10 @@ function handleMessage(event, spritz) {
     const iframeElement = document.getElementById("spritzWidgetFrame");
     if (!iframeElement.contentWindow) return;
     spritz.provider.sendAsync(event.data, (error, result) => {
+      console.log("[spritzWidget] response", {
+        error,
+        result
+      });
       if (error) {
         iframeElement.contentWindow.postMessage({
           ...result,

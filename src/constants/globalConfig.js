@@ -1,16 +1,16 @@
 export default {
   ENVIRONMENT: {
-    STAGING: {
-      FRONTEND: "https://app-staging.spritz.finance",
-      NAME: "STAGING",
-    },
     LOCAL: {
-      FRONTEND: "https://localdev.spritz.finance:3000",
-      NAME: "LOCAL",
+      url: "https://localdev.spritz.finance:3000",
+      name: "LOCAL",
+    },
+    STAGING: {
+      url: "https://app-staging.spritz.finance",
+      name: "STAGING",
     },
     PRODUCTION: {
-      FRONTEND: "https://app.spritz.finance",
-      NAME: "PRODUCTION",
+      url: "https://app.spritz.finance",
+      name: "PRODUCTION",
     },
   },
   STATUS: {

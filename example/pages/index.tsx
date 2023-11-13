@@ -7,15 +7,13 @@ export default function Home() {
   const { connector } = useWeb3React();
 
   const startSpritz = () => {
-    let spritzWidget = new SpritzSDK(
-      {
-        apiKey: "1dfeff2e-7de7-4ab3-8256-efbea11f24f2", // Your API Key
-        environment: "STAGING", // STAGING/PRODUCTION
-        widgetHeight: "800px",
-        widgetWidth: "100%",
-      },
-      connector.provider
-    );
+    let spritzWidget = new SpritzSDK({
+      integrationKey: "1dfeff2e-7de7-4ab3-8256-efbea11f24f2", // Your integration key
+      environment: "STAGING", // STAGING/PRODUCTION
+      height: "800px",
+      width: "100%",
+      provider: connector.provider,
+    });
     spritzWidget.init();
   };
 

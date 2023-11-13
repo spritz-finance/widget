@@ -14,7 +14,7 @@ $ npm install @spritz-finance/widget
 
 ## Example usage
 
-Refer here for the full list of [customisation options](https://docs.spritz.com/docs/query-parameters)
+Refer here for the full list of [customisation options](https://docs.spritz.finance/docs/embeddable-widget)
 
 ```js
 import spritzSDK from '@spritz-finance/widget';

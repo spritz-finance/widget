@@ -17,9 +17,9 @@ $ npm install @spritz-finance/widget
 Refer here for the full list of [customisation options](https://docs.spritz.finance/docs/embeddable-widget)
 
 ```js
-import spritzSDK from '@spritz-finance/widget';
+import SpritzSDK from '@spritz-finance/widget';
 
-let spritz = new spritzSDK({
+let spritz = new SpritzSDK({
     integrationKey: '<your-integration-key>', // required
     environment: '<environment: STAGING|PRODUCTION>', // required
     provider: window.ethereum.provider // optional, an ethers provider. Will bridge your app's web3 provider into the Spritz app

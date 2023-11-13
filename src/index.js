@@ -113,9 +113,9 @@ class SpritzSDK {
 
   attachListener() {
     if (window.addEventListener) {
-      window.addEventListener("message", (e) => this.handleMessage(e));
+      window.addEventListener("message", this.handleMessage.bind(this));
     } else {
-      window.attachEvent("onmessage", (e) => this.handleMessage(e));
+      window.attachEvent("onmessage", this.handleMessage.bind(this));
     }
   }
 
@@ -141,8 +141,6 @@ class SpritzSDK {
   }
 
   handleMessage(event) {
-    console.log("[spritzWidget] handleMessage", event);
-
     const environment = Object.values(config.ENVIRONMENT).find(
       (env) => env.url === event.origin
     );
@@ -150,9 +148,12 @@ class SpritzSDK {
     if (!environment) return;
     if (!event.data) return;
 
-    if (event.data && event.data.jsonrpc === "2.0") {
+    console.log("[spritzWidget] handleMessage", event);
+
+    if (event.data && event.data.jsonrpc === "2.0" && this.provider) {
       const iframeElement = document.getElementById("spritzWidgetFrame");
       if (!iframeElement.contentWindow) return;
+
       this.provider.sendAsync(event.data, (error, result) => {
         console.log("[spritzWidget] response", { error, result });
 

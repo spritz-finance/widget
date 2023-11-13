@@ -8,7 +8,7 @@ export default function Home() {
 
   const startSpritz = () => {
     let spritzWidget = new SpritzSDK({
-      integrationKey: "1dfeff2e-7de7-4ab3-8256-efbea11f24f2", // Your integration key
+      integrationKey: "ik_ZWMzYzQzNGUtYzM0NC00MWZiLWE5MTMtYzBmYTEzZjc4OTI2", // Your integration key
       environment: "STAGING", // STAGING/PRODUCTION
       height: "800px",
       width: "100%",

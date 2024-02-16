@@ -45,7 +45,7 @@ class SpritzSDK {
   constructor(options, provider) {
     console.log("Initializing spritzSDK", options);
     this.options = options;
-    this.provider = options.prover || provider;
+    this.provider = options.provider || provider;
     this.eventEmitter = new events.EventEmitter();
   }
 

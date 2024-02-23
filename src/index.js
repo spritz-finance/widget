@@ -154,21 +154,22 @@ class SpritzSDK {
       const iframeElement = document.getElementById("spritzWidgetFrame");
       if (!iframeElement.contentWindow) return;
 
-      this.provider.sendAsync(event.data, (error, result) => {
-        console.log("[spritzWidget] response", { error, result });
-
-        if (error) {
-          iframeElement.contentWindow.postMessage(
-            {
-              ...result,
-              error,
-            },
-            event.origin
-          );
-        } else {
-          iframeElement.contentWindow.postMessage(result, event.origin);
-        }
-      });
+      if (this.provider && typeof this.provider.sendAsync === 'function') {
+        this.provider.sendAsync(event.data, (error, result) => {
+          if (error) {
+            iframeElement.contentWindow.postMessage(
+              {
+                ...result,
+                error,
+              },
+              event.origin
+            );
+          } else {
+            iframeElement.contentWindow.postMessage(result, event.origin);
+          }
+        });
+      }
+     
     }
 
     switch (event.data.event_id) {

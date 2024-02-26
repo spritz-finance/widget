@@ -1075,7 +1075,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 },{}],7:[function(require,module,exports){
 module.exports={
   "name": "@spritz-finance/widget",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "Spritz Finance Widget to integrate fiat offramp",
   "main": "dist/sdk.js",
   "scripts": {
@@ -1413,7 +1413,7 @@ class SpritzSDK {
   constructor(options, provider) {
     console.log("Initializing spritzSDK", options);
     this.options = options;
-    this.provider = options.prover || provider;
+    this.provider = options.provider || provider;
     this.eventEmitter = new _events.default.EventEmitter();
   }
   on(type, cb) {
@@ -1479,9 +1479,9 @@ class SpritzSDK {
   }
   attachListener() {
     if (window.addEventListener) {
-      window.addEventListener("message", e => this.handleMessage(e));
+      window.addEventListener("message", this.handleMessage.bind(this));
     } else {
-      window.attachEvent("onmessage", e => this.handleMessage(e));
+      window.attachEvent("onmessage", this.handleMessage.bind(this));
     }
   }
   close() {
@@ -1504,27 +1504,25 @@ class SpritzSDK {
     }
   }
   handleMessage(event) {
-    console.log("[spritzWidget] handleMessage", event);
     const environment = Object.values(_constants.config.ENVIRONMENT).find(env => env.url === event.origin);
     if (!environment) return;
     if (!event.data) return;
-    if (event.data && event.data.jsonrpc === "2.0") {
+    console.log("[spritzWidget] handleMessage", event);
+    if (event.data && event.data.jsonrpc === "2.0" && this.provider) {
       const iframeElement = document.getElementById("spritzWidgetFrame");
       if (!iframeElement.contentWindow) return;
-      this.provider.sendAsync(event.data, (error, result) => {
-        console.log("[spritzWidget] response", {
-          error,
-          result
+      if (this.provider && typeof this.provider.sendAsync === 'function') {
+        this.provider.sendAsync(event.data, (error, result) => {
+          if (error) {
+            iframeElement.contentWindow.postMessage({
+              ...result,
+              error
+            }, event.origin);
+          } else {
+            iframeElement.contentWindow.postMessage(result, event.origin);
+          }
         });
-        if (error) {
-          iframeElement.contentWindow.postMessage({
-            ...result,
-            error
-          }, event.origin);
-        } else {
-          iframeElement.contentWindow.postMessage(result, event.origin);
-        }
-      });
+      }
     }
     switch (event.data.event_id) {
       case _constants.EVENTS.SPRITZ_WIDGET_CLOSE:
